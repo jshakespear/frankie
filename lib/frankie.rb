@@ -180,7 +180,10 @@ module Sinatra
         "http://apps.facebook.com/#{ENV['FACEBOOKER_RELATIVE_URL_ROOT']}/#{url}"
       end
     end
+
+    def self.registered(app)
+      app.register Loader
+      app.helpers Helpers
+    end
   end
-  register Frankie::Loader
-  helpers Frankie::Helpers
 end
