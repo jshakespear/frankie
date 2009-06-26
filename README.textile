@@ -30,7 +30,7 @@ h2. Sample Application
 
 	  ## the site
 	  get '/' do
-	    body "<h1>Hello #{session[:facebook_session].user.name} and welcome to frankie!</h1>"
+	    body "Hello #{session[:facebook_session].user.name} and welcome to frankie!"
 	  end
   end
 
