@@ -2,17 +2,17 @@
 
 Gem::Specification.new do |s|
   s.name = %q{frankie}
-  s.version = "0.4.2"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ron Evans", "Justin Smestad"]
-  s.date = %q{2009-06-25}
+  s.date = %q{2009-06-26}
   s.default_executable = %q{tunnel}
   s.email = %q{justin.smestad@gmail.com}
   s.executables = ["tunnel"]
   s.extra_rdoc_files = [
     "LICENSE",
-     "README.rdoc"
+     "README.textile"
   ]
   s.files = [
     ".DS_Store",
@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
      "CHANGELOG",
      "LICENSE",
      "Manifest",
-     "README.rdoc",
+     "README.textile",
      "Rakefile",
      "VERSION",
      "bin/tunnel",
