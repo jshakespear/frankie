@@ -124,12 +124,11 @@ module Sinatra
       def facebook_parameter_conversions
         @facebook_parameter_conversions ||= Hash.new do |hash, key| 
           lambda{|value| value}
-        end.merge(
-          'time' => lambda{|value| Time.at(value.to_f)},
-          'in_canvas' => lambda{|value| !blank?(value)},
-          'added' => lambda{|value| !blank?(value)},
-        'expires' => lambda{|value| blank?(value) ? nil : Time.at(value.to_f)},
-        'friends' => lambda{|value| value.split(/,/)}
+        end.merge('time' => lambda{|value| Time.at(value.to_f)},
+                  'in_canvas' => lambda{|value| !blank?(value)},
+                  'added' => lambda{|value| !blank?(value)},
+                  'expires' => lambda{|value| blank?(value) ? nil : Time.at(value.to_f)},
+                  'friends' => lambda{|value| value.split(/,/)}
         )
       end
       
@@ -179,11 +178,18 @@ module Sinatra
         return url if !request_is_for_a_facebook_canvas?
         "http://apps.facebook.com/#{ENV['FACEBOOKER_RELATIVE_URL_ROOT']}/#{url}"
       end
-    end
+    
+      def do_redirect(*args)
+        if request_is_for_a_facebook_canvas?
+          fbml_redirect_tag(args[0])
+        else
+          redirect args[0]
+        end
+      end
 
-    def self.registered(app)
-      app.register Loader
-      app.helpers Helpers
+      def self.registered(app)
+        app.register Loader
+        app.helpers Helpers
+      end
     end
-  end
 end
